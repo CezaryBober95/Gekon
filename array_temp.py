@@ -8,7 +8,6 @@ import os.path
 #4)todo: random value in array exept gekon
 #5)todo: make tuple to create more values
 #6)todo: do point 5 for few animals
-#7)todo: add name to Raport and make tuple to append next arrays and temp ( add min temp too)
 
 animal=np.array([[22.4,22.45,22.54,22.67,22.87,22.45,22.75,22.64],
                  [22.56,22.78,20.49,20.87,21.54,23.48,22.56,22.43],
@@ -20,10 +19,16 @@ animal=np.array([[22.4,22.45,22.54,22.67,22.87,22.45,22.75,22.64],
                  [22.65,22.76,22.65,22.65,22.45,22.46,22.98,22.56]])
 #GEKON -> animal[1][5] : animal [4][5]
 
-name= "Lizard"
+name= "PLOT_TEST"
 
-def coordinate(array):
+def coordinate_max(array):
     cor=np.where(array == array.max())
+    array_i, array_j= cor[0], cor[1]
+    array_i, array_j=int(array_i), int(array_j)
+    return(array_i,array_j) # tuple
+
+def coordinate_min(array):
+    cor=np.where(array == array.min())
     array_i, array_j= cor[0], cor[1]
     array_i, array_j=int(array_i), int(array_j)
     return(array_i,array_j) # tuple
@@ -32,31 +37,39 @@ def value_check(array,row,col):
     max_temp=(array[row][col])
     return max_temp
 
-def Raport(array,max,name):
-    animal_name="Raport_%(name)s.txt" % {'name': name}
-    start="AMG88xx pixels\n-- Pixels Test --\n\n"
-    current_time = time.strftime("%Y-%m-%d %H:%M:%S")
-    hour="\n\nCzas pomiaru: %s" % current_time
-    max_C="\nMaksymalna temperatura: %s C" % str(max)
-    if os.path.exists(animal_name):
-
-
-    else:
+def Raport(array,max, min,name):
+    animal_name = "Raport_%(name)s.txt" % {'name': name}
+    if os.path.exists(animal_name) == False:
         raport = open(animal_name, "w")
-        raport.write(start)
-        raport.write(str(array))
-        raport.write(hour)
-        raport.write(max_C)
-        raport.close()
+    start = "AMG88xx pixels\n-- Pixels Test --\n\n"
+    current_time = time.strftime("%Y-%m-%d %H:%M:%S")
+    hour = "\n\nCzas pomiaru: %s" % current_time
+    max_C = "\nMaksymalna temperatura: %s C" % str(max)
+    min_C = "\nMinimalna temperatura: %s C\n\n" % str(min)
+    raport=open(animal_name,"a")
+    raport.write(start)
+    raport.write(str(array))
+    raport.write(hour)
+    raport.write(max_C)
+    raport.write(min_C)
+    raport.close()
 
 #cor_ij=coordinate(animal)
 #Raport(animal,value_check(animal,cor_ij[0],cor_ij[1]))
 
 #score_array= np.round(np.random.uniform(19.0,27.0,(8,8)),2)
 
-for i in range(5):
-    score_array = np.round(np.random.uniform(19.0, 27.0, (8, 8)),2)
-    cor_ij = coordinate(score_array)
-    Raport(score_array, value_check(score_array, cor_ij[0], cor_ij[1]),name)
-    #time.sleep(1)
+for i in range(192):
+    try:
+        score_array = np.round(np.random.uniform(19.0, 27.0, (8, 8)),2)
+        cor_ij_max = coordinate_max(score_array)
+        cor_ij_min = coordinate_min(score_array)
+        Raport(score_array, value_check(score_array, cor_ij_max[0], cor_ij_max[1]), value_check(score_array, cor_ij_min[0], cor_ij_min[1]),name)
+        time.sleep(1)
+        print ("Raport %i" % (i))
+    except:
+        print("Array Error")
+        continue
+
+
 
