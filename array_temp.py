@@ -54,22 +54,38 @@ def Raport(array,max, min,name):
     raport.write(min_C)
     raport.close()
 
+def temperature_raport(max,min,name):
+    animal_name = "Temp_raport_%(name)s.txt" % {'name': name}
+    if os.path.exists(animal_name) == False:
+        raport = open(animal_name, "w")
+    current_time = time.strftime("%Y-%m-%d %H:%M:%S")
+    hour = "%s," % str(current_time)
+    max_C = "%s," % str(max)
+    min_C = "%s\n" % str(min)
+    raport_temp = open(animal_name, "a")
+    raport_temp.write(hour)
+    raport_temp.write(max_C)
+    raport_temp.write(min_C)
+    raport_temp.close()
+
 #cor_ij=coordinate(animal)
 #Raport(animal,value_check(animal,cor_ij[0],cor_ij[1]))
 
 #score_array= np.round(np.random.uniform(19.0,27.0,(8,8)),2)
 
-for i in range(192):
+for i in range(192): # 192
     try:
         score_array = np.round(np.random.uniform(19.0, 27.0, (8, 8)),2)
         cor_ij_max = coordinate_max(score_array)
         cor_ij_min = coordinate_min(score_array)
         Raport(score_array, value_check(score_array, cor_ij_max[0], cor_ij_max[1]), value_check(score_array, cor_ij_min[0], cor_ij_min[1]),name)
+        temperature_raport(value_check(score_array, cor_ij_max[0], cor_ij_max[1]), value_check(score_array, cor_ij_min[0], cor_ij_min[1]),name)
         time.sleep(1)
         print ("Raport %i" % (i))
     except:
         print("Array Error")
         continue
+print("finish")
 
 
 
