@@ -2,6 +2,7 @@ import tkinter as tk
 
 #todo: connect all class here
 #todo: add plots, point board,make buttons to start observation
+#todo: MENU bar with help how to add file with observation
 
 class Application:
 
@@ -28,7 +29,6 @@ class Application:
 
         self.Frame4 = tk.Frame(master,width=width_value/2,height=height_value/2, bg="yellow")
         self.Frame4.grid(row=1, column=1)
-
 
 
 root= tk.Tk()
