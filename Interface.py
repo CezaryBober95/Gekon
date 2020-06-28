@@ -3,8 +3,8 @@ import tkinter as tk
 #todo: connect all class here
 #todo: add plots, point board,make buttons to start observation
 #todo: MENU bar with help how to add file with observation
-
-class Application:
+#TODO: PANDAS !!!
+class Interface:
 
     def __init__(self, master):
         self.master = master
@@ -28,5 +28,5 @@ class Application:
 
 
 root= tk.Tk()
-GUI=Application(master=root)
+GUI=Interface(master=root)
 root.mainloop()
