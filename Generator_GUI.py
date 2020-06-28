@@ -16,17 +16,38 @@ class Generator_GUI:
         master.geometry("500x700+475+50")
         #master.geometry("500x700+0+0")
 
-        self.Frame1 = tk.Frame(master,width=500,height=700, bg="#708090")
+        self.Frame1 = tk.Frame(master,width=500,height=200, bg="#708090")
         self.Frame1.grid(row=0,column=0)
+        self.Frame2 = tk.Frame(master, width=500, height=200, bg="green")
+        self.Frame2.grid(row=1, column=0)
+        self.Frame3 = tk.Frame(master, width=500, height=200, bg="blue")
+        self.Frame3.grid(row=2, column=1)
 
-        self.Entry1 =tk.Entry(self.Frame1,width=30,bg="blue")
-        self.Entry1.grid(row=1,column=0, padx=10, pady=5)
+        self.Entry1 =tk.Entry(self.Frame1,text="Nazwa osobnika: ",width=30)
+        self.Entry1.grid(row=1,column=2, padx=10, pady=5)
         #self.Entry2 = tk.Entry(self.Frame1, width=30)
         #self.Entry2.grid(row=2, column=0, padx=10, pady=5)
 
-        self.days=[("1",1),("2",2),("3",3)]
-        self.RB1= tk.Radiobutton(text=self.days)
-        self.RB1.grid(row=2, column=0)
+        self.in_hour = [
+            (1, "1"),
+            (2, 2),
+            (4, 4),
+            (6, 6),
+            (12,12),
+            (60,60),
+        ]
+        self.pizza=tk.StringVar()
+        self.pizza.set("Wygenerujesz: ")
+
+        for text,mode in self.in_hour:
+            tk.Radiobutton(self.Frame2,text=text,variable=self.pizza,value=mode).pack()
+
+        def click(value):
+            sumFrame=tk.Label(self.Frame3,text=value)
+            sumFrame.pack()
+
+        self.Button1=tk.Button(self.Frame3,text="Generate",command=click(self.pizza.get()))
+        self.Button1.pack()
 
 
 root= tk.Tk()

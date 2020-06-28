@@ -21,12 +21,8 @@ class Application:
 
         self.Frame2 = tk.Frame(master,width=width_value/2,height=height_value/2, bg="red")
         self.Frame2.grid(row=0, column=1)
-
-
         self.Frame3 = tk.Frame(master,width=width_value/2,height=height_value/2, bg="green")
         self.Frame3.grid(row=1, column=0)
-
-
         self.Frame4 = tk.Frame(master,width=width_value/2,height=height_value/2, bg="yellow")
         self.Frame4.grid(row=1, column=1)
 
