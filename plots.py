@@ -5,7 +5,7 @@ import csv
 #todo: JUST DO IT! for temperature, possition,
 #file = open("Raport.txt","r")
 #print (file.readline(3))
-data =np.genfromtxt('Temp_raport_PLOT_TEST.txt',delimiter=',')
+data =np.genfromtxt('Temp_raport_PLOT_TEST.txxt',delimiter=',')
 
 plt.title("Max and min temperature in the Lizard terrarium")
 plt.xlabel("Minutes")

@@ -6,7 +6,6 @@ import os.path
 #2)todo: plots
 #3)todo: random gekon position
 #4)todo: random value in array exept gekon
-#5)todo: add observation numeration in file
 #6)todo: change variable name,observation to read from GUI class Generator
 
 '''animal=np.array([[22.4,22.45,22.54,22.67,22.87,22.45,22.75,22.64],
@@ -19,74 +18,78 @@ import os.path
                  [22.65,22.76,22.65,22.65,22.45,22.46,22.98,22.56]])
 #GEKON -> animal[1][5] : animal [4][5]
 '''
-def coordinate_max(array):
-    cor=np.where(array == array.max())
-    array_i, array_j= cor[0], cor[1]
-    array_i, array_j=int(array_i), int(array_j)
-    return(array_i,array_j) # tuple
+class Generator:
 
-def coordinate_min(array):
-    cor=np.where(array == array.min())
-    array_i, array_j= cor[0], cor[1]
-    array_i, array_j=int(array_i), int(array_j)
-    return(array_i,array_j) # tuple
+    def coordinate_max(self,array):
+        cor=np.where(array == array.max())
+        array_i, array_j= cor[0], cor[1]
+        array_i, array_j=int(array_i), int(array_j)
+        return(array_i,array_j) # tuple
 
-def value_check(array,row,col):
-    max_temp=(array[row][col])
-    return max_temp
+    def coordinate_min(self,array):
+        cor=np.where(array == array.min())
+        array_i, array_j= cor[0], cor[1]
+        array_i, array_j=int(array_i), int(array_j)
+        return(array_i,array_j) # tuple
 
-def Raport(array,max, min,name,obs):
-    animal_name = "Raport_%(name)s.txt" % {'name': name}
-    if os.path.exists(animal_name) == False:
-        raport = open(animal_name, "w")
-    start = "\nAMG88xx pixels\n-- Pixels Test --\n\n"
-    obs="Obserwacja: %s" % (obs+1)
-    current_time = time.strftime("%Y-%m-%d %H:%M:%S")
-    hour = "\n\nCzas pomiaru: %s" % current_time
-    max_C = "\nMaksymalna temperatura: %s C" % str(max)
-    min_C = "\nMinimalna temperatura: %s C\n\n" % str(min)
-    raport=open(animal_name,"a")
-    raport.write(obs)
-    raport.write(start)
-    raport.write(str(array))
-    raport.write(hour)
-    raport.write(max_C)
-    raport.write(min_C)
-    raport.close()
+    def value_check(self,array,row,col):
+        max_temp=(array[row][col])
+        return max_temp
 
-def temperature_raport(max,min,name,obs):
-    animal_name = "Temp_raport_%(name)s.txt" % {'name': name}
-    if os.path.exists(animal_name) == False:
-        raport = open(animal_name, "w")
-    obs = "Obserwacja: %s -> " % (obs+1)
-    current_time = time.strftime("%Y-%m-%d %H:%M:%S")
-    hour = "%s," % str(current_time)
-    max_C = "%s," % str(max)
-    min_C = "%s\n" % str(min)
-    raport_temp = open(animal_name, "a")
-    raport_temp.write(obs)
-    raport_temp.write(hour)
-    raport_temp.write(max_C)
-    raport_temp.write(min_C)
-    raport_temp.close()
+    def Raport(self,array,max, min,name,obs):
+        animal_name = "Raport_%(name)s.txt" % {'name': name}
+        if os.path.exists(animal_name) == False:
+            raport = open(animal_name, "w")
+        start = "\nAMG88xx pixels\n-- Pixels Test --\n\n"
+        obs="Obserwacja: %s" % (obs+1)
+        current_time = time.strftime("%Y-%m-%d %H:%M:%S")
+        hour = "\n\nCzas pomiaru: %s" % current_time
+        max_C = "\nMaksymalna temperatura: %s C" % str(max)
+        min_C = "\nMinimalna temperatura: %s C\n\n" % str(min)
+        raport=open(animal_name,"a")
+        raport.write(obs)
+        raport.write(start)
+        raport.write(str(array))
+        raport.write(hour)
+        raport.write(max_C)
+        raport.write(min_C)
+        raport.close()
 
-def repeat(observations):
-    for i in range(observations): # 192
-        try:
-            score_array = np.round(np.random.uniform(19.0, 27.0, (8, 8)),2)
-            cor_ij_max = coordinate_max(score_array)
-            cor_ij_min = coordinate_min(score_array)
-            Raport(score_array, value_check(score_array, cor_ij_max[0], cor_ij_max[1]), value_check(score_array, cor_ij_min[0], cor_ij_min[1]),name,i)
-            temperature_raport(value_check(score_array, cor_ij_max[0], cor_ij_max[1]), value_check(score_array, cor_ij_min[0], cor_ij_min[1]),name,i)
-            time.sleep(1)
-            print ("Raport %i" % (i))
-        except:
-            print("Array Error")
-            continue
-    print("finish")
+    def temperature_raport(self,max,min,name,obs):
+        animal_name = "Temp_raport_%(name)s.txt" % {'name': name}
+        if os.path.exists(animal_name) == False:
+            raport = open(animal_name, "w")
+        obs = "Obserwacja: %s -> " % (obs+1)
+        current_time = time.strftime("%Y-%m-%d %H:%M:%S")
+        hour = "%s," % str(current_time)
+        max_C = "%s," % str(max)
+        min_C = "%s\n" % str(min)
+        raport_temp = open(animal_name, "a")
+        raport_temp.write(obs)
+        raport_temp.write(hour)
+        raport_temp.write(max_C)
+        raport_temp.write(min_C)
+        raport_temp.close()
+
+    def repeat(self,observations):
+        for i in range(observations): # 192
+            try:
+                score_array = np.round(np.random.uniform(19.0, 27.0, (8, 8)),2)
+                cor_ij_max = self.coordinate_max(score_array)
+                cor_ij_min = self.coordinate_min(score_array)
+                self.Raport(score_array, self.value_check(score_array, cor_ij_max[0], cor_ij_max[1]), self.value_check(score_array, cor_ij_min[0], cor_ij_min[1]),name,i)
+                self.temperature_raport(self.value_check(score_array, cor_ij_max[0], cor_ij_max[1]), self.value_check(score_array, cor_ij_min[0], cor_ij_min[1]),name,i)
+                time.sleep(1)
+                print ("Raport %i" % (i))
+            except:
+                print("Array Error")
+                continue
+        print("finish")
 
 #Variables-------------------------------------------------------------------------------
 name= "PLOT_TEST"
-observations=15
+#192
+observations=192
 #=======================================================================================
-repeat(observations)
+gen = Generator()
+gen.repeat(observations)

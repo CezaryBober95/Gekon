@@ -12,10 +12,11 @@ def add_score(board,row,col):
     return board
 
 
-board_real=create_board()
-gen=score_gen(board_real)
-print(board_real)
+#board_real=create_board()
+#gen=score_gen(board_real)
+#print(board_real)
 
 
 score_array= np.random.uniform(19.0,27.0,(8,8))
+print(score_array)
 
