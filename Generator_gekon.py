@@ -5,9 +5,6 @@ import numpy as np
 import time
 import os.path
 
-#todo:progress bar
-#todo: progress bar
-
 class Generator_GUI:
 
     def __init__(self, master):

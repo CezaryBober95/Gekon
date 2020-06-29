@@ -85,11 +85,11 @@ class Generator:
         print("finish")
 
 #Variables-------------------------------------------------------------------------------
-#name= "PLOT_TEST"
+name= "PLOT_TEST"
 #192
 #observations=5
 #name=input("Podaj nazwę osobnika: ")
 #observations=int(input("Podaj liczbę obserwacji:"))
 #=======================================================================================
-gen = Generator()
-gen.repeat(observations)
+#gen = Generator()
+#gen.repeat(observations)
