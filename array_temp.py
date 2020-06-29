@@ -1,12 +1,7 @@
 import numpy as np
 import time
 import os.path
-
-#1)todo:class Generator
-#2)todo: plots
 #3)todo: random gekon position
-#4)todo: random value in array exept gekon
-#5)todo: add observation numeration in file
 #6)todo: change variable name,observation to read from GUI class Generator
 
 '''animal=np.array([[22.4,22.45,22.54,22.67,22.87,22.45,22.75,22.64],
