@@ -1,15 +1,25 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import csv
+import pandas as pd
+from datetime import datetime
+from tkinter import filedialog
+from tkinter import messagebox
 
+'''def baseopen(): #To chyba dzia³a
+    db=filedialog.askopenfilename(initialdir = "D:\Studia\Magisterka\Semestr_1\Projekty_1\IBD",
+                                  title = "Wybierz baze danych",
+                                  filetypes = (("Bazy danych","*.db"),("all files","*.*")))
+'''
 #todo: JUST DO IT! for temperature, possition,
-#file = open("Raport.txt","r")
-#print (file.readline(3))
-data =np.genfromtxt('Temp_raport_PLOT_TEST.txxt',delimiter=',')
+user_cols=['DataTime','Temp max','Temp min']
+date1=pd.read_table('Temp_raport_Dino.txt', sep=',',header=None,names=user_cols)
+print(date1.head())
+print("Wczytane")
 
-plt.title("Max and min temperature in the Lizard terrarium")
-plt.xlabel("Minutes")
-plt.ylabel("Degrees C")
-plt.plot(data['time'],data['max'],color='red')
-plt.plot(data['time'],data['min'],color='blue')
+date1['DataTime'] = date1['DataTime'].map(lambda x: datetime.strptime(str(x), '%Y-%m-%d %H:%M:%S'))
+x = date1['DataTime']
+y = date1['Temp max']
+
+plt.plot(x,y,c="red")
+plt.gcf().autofmt_xdate()
 plt.show()
