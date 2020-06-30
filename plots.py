@@ -14,7 +14,7 @@ from tkinter import messagebox
 user_cols=['DataTime','Temp max','Temp min']
 # change file in date1 to get new plot
 #'Temp_raport_Dino.txt' -> 'Temp_raport_Denver'
-date1=pd.read_table('Temp_raport_Dino.txt', sep=',',header=None,names=user_cols)
+date1=pd.read_table('Temp_raport_Kiwi.txt', sep=',',header=None,names=user_cols)
 print(date1.head())
 print("Wczytane")
 

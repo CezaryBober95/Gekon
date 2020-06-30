@@ -84,16 +84,16 @@ class Generator_GUI:
 
     def coordinate_max(self, array):
 
-        cor = np.where(array == array.max())
-        array_i, array_j = cor[0], cor[1]
-        array_i, array_j = int(array_i), int(array_j)
+        cor = np.round(np.where(array == array.max()),2)
+        array_i, array_j = np.round(cor[0],2), np.round(cor[1],2)
+        array_i, array_j = np.round(int(array_i),2), np.round(int(array_j),2)
         return (array_i, array_j)  # tuple
 
     def coordinate_min(self, array):
 
-        cor = np.where(array == array.min())
-        array_i, array_j = cor[0], cor[1]
-        array_i, array_j = int(array_i), int(array_j)
+        cor = np.round(np.where(array == array.min()),2)
+        array_i, array_j = np.round(cor[0],2), np.round(cor[1],2)
+        array_i, array_j = np.round(int(array_i),2), np.round(int(array_j),2)
         return (array_i, array_j)  # tuple
 
     def value_check(self, array, row, col):
@@ -135,22 +135,19 @@ class Generator_GUI:
 
         # self.this=Generator_GUI()
     def repeat(self, observations):
-        for i in range(observations):  # 192
-            try:
-                # self.this = Generator_GUI()
-                score_array = np.round(np.random.uniform(19.0, 27.0, (8, 8)), 2)
-                cor_ij_max = self.coordinate_max(score_array)
-                cor_ij_min = self.coordinate_min(score_array)
-                self.Raport(score_array, self.value_check(score_array, cor_ij_max[0], cor_ij_max[1]),
+        for i in range(observations+1):  # 192
+
+            # self.this = Generator_GUI()
+            score_array = np.round(np.random.uniform(19.0, 27.0, (8, 8)), 2)
+            cor_ij_max = self.coordinate_max(score_array)
+            cor_ij_min = self.coordinate_min(score_array)
+            self.Raport(score_array, self.value_check(score_array, cor_ij_max[0], cor_ij_max[1]),
                             self.value_check(score_array, cor_ij_min[0], cor_ij_min[1]), self.Entry1.get(), i)
-                self.temperature_raport(self.value_check(score_array, cor_ij_max[0], cor_ij_max[1]),
+            self.temperature_raport(self.value_check(score_array, cor_ij_max[0], cor_ij_max[1]),
                                         self.value_check(score_array, cor_ij_min[0], cor_ij_min[1]),
                                         self.Entry1.get())
-                time.sleep(1)
-                print("Raport %i" % (i))
-            except:
-                print("Array Error")
-                continue
+            time.sleep(1)
+            print("Raport %i" % (i))
         print("finish")
 
 root= tk.Tk()

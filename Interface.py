@@ -1,5 +1,5 @@
 import tkinter as tk
-
+import numpy.random as np
 #todo: connect all class here
 #todo: add plots, point board,make buttons to start observation
 #todo: MENU bar with help how to add file with observation
@@ -29,7 +29,8 @@ class Interface:
 #Frame3-> score board for position
         for i in range(8):
             for j in range(8):
-                tk.Button(self.Frame3,text="score",width=12,height=2).grid(row=i,column=j)
+                a=np.random_integers(1,50+1)
+                tk.Button(self.Frame3,text=a,width=12,height=2).grid(row=i,column=j)
 
 #Frame4-> buttons
 

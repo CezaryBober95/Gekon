@@ -88,18 +88,16 @@ class Generator_GUI:
         self.ButtonStart.pack(side=tk.BOTTOM, padx=73)
 
     def coordinate_max(self, array):
-
-        cor = np.where(array == array.max())
-        array_i, array_j = cor[0], cor[1]
-        array_i, array_j = int(array_i), int(array_j)
-        return (array_i, array_j)  # tuple
+        cor = np.round(np.where(array == array.max()), 2)
+        array_i, array_j = np.round(cor[0], 2), np.round(cor[1], 2)
+        array_i, array_j = np.round(int(array_i), 2), np.round(int(array_j), 2)
+        return (array_i, array_j)
 
     def coordinate_min(self, array):
-
-        cor = np.where(array == array.min())
-        array_i, array_j = cor[0], cor[1]
-        array_i, array_j = int(array_i), int(array_j)
-        return (array_i, array_j)  # tuple
+        cor = np.round(np.where(array == array.min()), 2)
+        array_i, array_j = np.round(cor[0], 2), np.round(cor[1], 2)
+        array_i, array_j = np.round(int(array_i), 2), np.round(int(array_j), 2)
+        return (array_i, array_j)
 
     def value_check(self, array, row, col):
         max_temp = (array[row][col])
@@ -124,17 +122,15 @@ class Generator_GUI:
         raport.write(min_C)
         raport.close()
 
-    def temperature_raport(self, max, min, name, obs):
+    def temperature_raport(self, max, min, name):
         animal_name = "Temp_raport_%(name)s.txt" % {'name': name}
         if os.path.exists(animal_name) == False:
             raport = open(animal_name, "w")
-        obs = "Obserwacja: %s -> " % (obs + 1)
         current_time = time.strftime("%Y-%m-%d %H:%M:%S")
         hour = "%s," % str(current_time)
         max_C = "%s," % str(max)
         min_C = "%s\n" % str(min)
         raport_temp = open(animal_name, "a")
-        raport_temp.write(obs)
         raport_temp.write(hour)
         raport_temp.write(max_C)
         raport_temp.write(min_C)
@@ -152,7 +148,7 @@ class Generator_GUI:
                             self.value_check(score_array, cor_ij_min[0], cor_ij_min[1]), self.Entry1.get(), i)
                 self.temperature_raport(self.value_check(score_array, cor_ij_max[0], cor_ij_max[1]),
                                         self.value_check(score_array, cor_ij_min[0], cor_ij_min[1]),
-                                        self.Entry1.get(), i)
+                                        self.Entry1.get())
                 time.sleep(1)
                 print("Raport %i" % (i))
             except:
