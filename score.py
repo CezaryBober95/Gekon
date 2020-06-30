@@ -6,6 +6,7 @@ file = open("Raport_Reks.txt", "rt")
 contents=file.read()
 file.close()
 print(contents)
+
 def create_board():
     board=np.zeros((8,8))
     return board
