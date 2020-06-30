@@ -83,18 +83,26 @@ class Generator_GUI:
         self.ButtonStart.pack(side=tk.BOTTOM, padx=73)
 
     def coordinate_max(self, array):
+        cormax = np.round(np.where(array == array.max()))
+        print(cormax[0], cormax[1])
 
-        cor = np.round(np.where(array == array.max()),2)
-        array_i, array_j = np.round(cor[0],2), np.round(cor[1],2)
-        array_i, array_j = np.round(int(array_i),2), np.round(int(array_j),2)
+        print("MAX %s" % cormax)
+        #array_i, array_j = np.round(cor[0],2), np.round(cor[1],2)
+        #array_i, array_j = np.round(int(array_i),2), np.round(int(array_j),2)
+        array_i,array_j=np.round(int(cormax[0]),2),np.round(int(cormax[1]),2)
         return (array_i, array_j)  # tuple
 
     def coordinate_min(self, array):
-
-        cor = np.round(np.where(array == array.min()),2)
-        array_i, array_j = np.round(cor[0],2), np.round(cor[1],2)
-        array_i, array_j = np.round(int(array_i),2), np.round(int(array_j),2)
-        return (array_i, array_j)  # tuple
+        cormin = np.round(np.where(array == array.min()),2)
+        print(cormin[0], cormin[1])
+        #for i in cormin:
+        #    array_i, array_j = np.round(i[0], 2), np.round(i[1], 2)
+        #    i[0]
+        print("MIN %s" % cormin)
+        #array_i, array_j = np.round(cor[0],2), np.round(cor[1],2)
+        #array_i, array_j = np.round(int(array_i),2), np.round(int(array_j),2)
+        array_i, array_j = np.round(int(cormin[0]), 2), np.round(int(cormin[1]), 2)
+        return (array_i, array_j)
 
     def value_check(self, array, row, col):
         max_temp = (array[row][col])
@@ -134,20 +142,24 @@ class Generator_GUI:
         raport_temp.close()
 
         # self.this=Generator_GUI()
-    def repeat(self, observations):
-        for i in range(observations+1):  # 192
 
-            # self.this = Generator_GUI()
-            score_array = np.round(np.random.uniform(19.0, 27.0, (8, 8)), 2)
-            cor_ij_max = self.coordinate_max(score_array)
-            cor_ij_min = self.coordinate_min(score_array)
-            self.Raport(score_array, self.value_check(score_array, cor_ij_max[0], cor_ij_max[1]),
+    def repeat(self, observations):
+        for i in range(observations):  # 192
+            try:
+                # self.this = Generator_GUI()
+                score_array = np.round(np.random.uniform(19.0, 27.0, (8, 8)), 2)
+                cor_ij_max = self.coordinate_max(score_array)
+                cor_ij_min = self.coordinate_min(score_array)
+                self.Raport(score_array, self.value_check(score_array, cor_ij_max[0], cor_ij_max[1]),
                             self.value_check(score_array, cor_ij_min[0], cor_ij_min[1]), self.Entry1.get(), i)
-            self.temperature_raport(self.value_check(score_array, cor_ij_max[0], cor_ij_max[1]),
+                self.temperature_raport(self.value_check(score_array, cor_ij_max[0], cor_ij_max[1]),
                                         self.value_check(score_array, cor_ij_min[0], cor_ij_min[1]),
                                         self.Entry1.get())
-            time.sleep(1)
-            print("Raport %i" % (i))
+                time.sleep(1)
+                print("Raport %i" % (i))
+            except:
+                print("Array error")
+                continue
         print("finish")
 
 root= tk.Tk()

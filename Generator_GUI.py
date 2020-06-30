@@ -88,15 +88,25 @@ class Generator_GUI:
         self.ButtonStart.pack(side=tk.BOTTOM, padx=73)
 
     def coordinate_max(self, array):
-        cor = np.round(np.where(array == array.max()), 2)
-        array_i, array_j = np.round(cor[0], 2), np.round(cor[1], 2)
-        array_i, array_j = np.round(int(array_i), 2), np.round(int(array_j), 2)
-        return (array_i, array_j)
+        cormax = np.round(np.where(array == array.max()))
+        print(cormax[0], cormax[1])
+
+        print("MAX %s" % cormax)
+        # array_i, array_j = np.round(cor[0],2), np.round(cor[1],2)
+        # array_i, array_j = np.round(int(array_i),2), np.round(int(array_j),2)
+        array_i, array_j = np.round(int(cormax[0]), 2), np.round(int(cormax[1]), 2)
+        return (array_i, array_j)  # tuple
 
     def coordinate_min(self, array):
-        cor = np.round(np.where(array == array.min()), 2)
-        array_i, array_j = np.round(cor[0], 2), np.round(cor[1], 2)
-        array_i, array_j = np.round(int(array_i), 2), np.round(int(array_j), 2)
+        cormin = np.round(np.where(array == array.min()), 2)
+        print(cormin[0], cormin[1])
+        # for i in cormin:
+        #    array_i, array_j = np.round(i[0], 2), np.round(i[1], 2)
+        #    i[0]
+        print("MIN %s" % cormin)
+        # array_i, array_j = np.round(cor[0],2), np.round(cor[1],2)
+        # array_i, array_j = np.round(int(array_i),2), np.round(int(array_j),2)
+        array_i, array_j = np.round(int(cormin[0]), 2), np.round(int(cormin[1]), 2)
         return (array_i, array_j)
 
     def value_check(self, array, row, col):
@@ -152,7 +162,7 @@ class Generator_GUI:
                 time.sleep(1)
                 print("Raport %i" % (i))
             except:
-                print("Array Error")
+                print("Array error")
                 continue
         print("finish")
 
