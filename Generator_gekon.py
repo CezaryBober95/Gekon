@@ -70,8 +70,6 @@ class Generator_GUI:
             sumFrame2.pack(side=tk.LEFT,padx=10, pady=10)
             sumFrame3=tk.Label(self.Frame4, text=value2)
             sumFrame3.pack(side=tk.LEFT,padx=10, pady=10)
-            #sumFrame4=tk.Label(self.Frame4, text=value3)
-            #sumFrame4.pack(side=tk.LEFT,padx=10, pady=10)
             return (value,value1,value2)
 
         self.Button1 = tk.Button(self.Frame4, text="Summary", bg="yellow",

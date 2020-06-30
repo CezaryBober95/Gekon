@@ -18,7 +18,7 @@ class Interface:
         self.Frame2 = tk.LabelFrame(master,text="Frame2",width=width_value/2,height=height_value/2, bg="#708090")
         self.Frame2.grid(row=0, column=1,ipadx=15)
         self.Frame3 = tk.LabelFrame(master,text="Score board",width=width_value/2,height=height_value/2, bg="#708090")
-        self.Frame3.grid(row=1, column=0,ipadx=15)
+        self.Frame3.grid(row=1, column=0,ipadx=8,ipady=8)
         self.Frame4 = tk.LabelFrame(master,text="Buttons",width=width_value/2,height=height_value/2, bg="#708090")
         self.Frame4.grid(row=1, column=1,ipadx=15)
 
@@ -27,6 +27,9 @@ class Interface:
 #Frame2->
 
 #Frame3-> score board for position
+        for i in range(8):
+            for j in range(8):
+                tk.Button(self.Frame3,text="score",width=12,height=2).grid(row=i,column=j)
 
 #Frame4-> buttons
 
