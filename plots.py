@@ -25,8 +25,12 @@ date1['DataTime'] = date1['DataTime'].map(lambda x: datetime.strptime(str(x), '%
 x = date1['DataTime']
 y = date1['Temp max']
 z = date1['Temp min']
-
+m = (date1['Temp max'] + date1 ['Temp min'])/2
+#b = (date1['Temp max'] - date1 ['Temp min'])
 plt.plot(x,y,c="red")
 plt.plot(x,z,c="blue")
+plt.plot(x,m,c="pink")
+#plt.plot(x,b,c="black")
 plt.gcf().autofmt_xdate()
 plt.show()
+
