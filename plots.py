@@ -19,7 +19,7 @@ user_cols=['DataTime','Temp max','Temp min']
 date1=pd.read_table('Test.txt', sep=',',header=None,names=user_cols)
 #date1=pd.read_table(file_me, sep=',',header=None,names=user_cols)
 print(date1.head())
-print("Wczytane")
+
 
 date1['DataTime'] = date1['DataTime'].map(lambda x: datetime.strptime(str(x), '%Y-%m-%d %H:%M:%S'))
 x = date1['DataTime']
@@ -27,10 +27,12 @@ y = date1['Temp max']
 z = date1['Temp min']
 m = (date1['Temp max'] + date1 ['Temp min'])/2
 #b = (date1['Temp max'] - date1 ['Temp min'])
-plt.plot(x,y,c="red")
-plt.plot(x,z,c="blue")
-plt.plot(x,m,c="pink")
+plt.plot(x,y,c="red",label="Maximum temperature")
+plt.plot(x,z,c="blue",label="Minimum temperature")
+plt.plot(x,m,c="pink",label="Average temperature")
 #plt.plot(x,b,c="black")
 plt.gcf().autofmt_xdate()
+plt.legend()
 plt.show()
+
 
