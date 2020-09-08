@@ -1,5 +1,5 @@
 import re
-with open("Geko2.txt") as myfile:
+with open("Array.txt") as myfile:
     file = open("macierze.txt", "w+")
     for line in myfile.readlines():
         if line.strip().startswith('['):
