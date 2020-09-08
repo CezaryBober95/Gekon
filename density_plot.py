@@ -34,11 +34,7 @@ for i in range(number_of_lines):
     plt.close()
     skip += 9
 
-    '''wykresy
-        plt.pcolor(matrix)
-        plt.show()
-        skip += 9
-    '''
+
 
 
 

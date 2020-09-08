@@ -42,7 +42,7 @@ print(dane)
 
 # Transform it to a long format
 df=dane
-#szerokość geograficzna, jego długość i wysokość (X, Y i Z)
+
 # Make the plot
 fig = plt.figure()
 ax = fig.gca(projection='3d')
